@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="teste" action="#" method="get">
+    <form id="teste" action="inserir.php" method="get">
         <input required id="teste1" type="text">
         <h1>fdsfsdfa</h1>
         <input type="submit" value="Enviar">

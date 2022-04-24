@@ -16,7 +16,12 @@ $("#teste").submit((e)=>{
     var teste_valor = $("#teste1").val();
 
     $.ajax({
-        
+        url: 'http://localhost/minha_biblioteca/biblioteca_jquery/inserir.php',
+        method: 'GET',
+        data: {teste: teste_valor},
+        dataType: 'json' 
+    }).done((results)=>{
+        console.log(results);
     })
 
 });
