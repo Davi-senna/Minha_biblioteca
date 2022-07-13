@@ -15,7 +15,7 @@
         Link : {{ link }}
         <br>
         <a v-bind:href="link">link</a><br>
-        <h1 :class="cor[0] = 'verde' ? cor[0] : cor[1]">{{cor[0] == 'verde' ? cor[0] : cor[1]}}</h1>
+        <h1 v-on:   click="clicar()" :class="cor[0] = 'verde' ? cor[0] : cor[1]">{{cor[0] == 'verde' ? cor[0] : cor[1]}}</h1>
         <input @keyup="imprimirTexto($event)" type="text" name="teste" id="teste">
     </div>
 
@@ -37,7 +37,11 @@
                 imprimirTexto(a) {
                     this.name = a.key;
                     console.log(this.name);
-                }
+                },
+
+                clicar(){
+                    alert("teste");
+                },
             }
         })
 
