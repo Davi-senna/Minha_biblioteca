@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <script src="./vue.js"></script>
     <title>Document</title>
 </head>
+
 <body>
     <div id="app">
         Hello, world!, my name is {{ name }} <br>
@@ -15,8 +17,31 @@
         Link : {{ link }}
         <br>
         <a v-bind:href="link">link</a><br>
-        <h1 v-on:   click="clicar()" :class="cor[0] = 'verde' ? cor[0] : cor[1]">{{cor[0] == 'verde' ? cor[0] : cor[1]}}</h1>
-        <input @keyup="imprimirTexto($event)" type="text" name="teste" id="teste">
+        <h1 v-if="name == 'Davi'" v-on:click="clicar()" :class="cor[0] = 'verde' ? cor[0] : cor[1]">{{cor[0] == 'verde'
+            ? cor[0] : cor[1]}}</h1>
+        <input @blur="trocarNome()" @keyup="imprimirTexto($event)" type="text" name="teste" id="testeInput">
+        <hr>
+        <ul>
+            <li v-for="(curso, chave) in cursos" v-text="chave +' - '+ curso"></li>
+        </ul>
+        <hr>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="({titulo, descricao}, chave) in cursos2">
+                    <!-- destructuring assignment -->
+                    <td>{{chave}}</td>
+                    <td>{{titulo}}</td>
+                    <td>{{descricao}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <script>
@@ -24,27 +49,44 @@
         const vm = new Vue({
             el: '#app',
             data: {
-                name : "Davi",
-                n1 : "#teste",
-                link : "https://porti-folio.com",
-                cor : ["vermelho","verde","amarelo","azul"]
+                name: "Davi",
+                n1: "#teste",
+                link: "https://porti-folio.com",
+                cor: ["vermelho", "verde", "amarelo", "azul"],
+                cursos: ['Laravel', 'Web Completo', 'Banco de Dados', 'Solid', 'Angular'],
+                cursos2: {
+                    1000: {
+                        titulo: 'Laravel',
+                        descricao: 'Domine o framework PHP mais poderoso do mundo'
+                    },
+                    1001: {
+                        titulo: 'Banco de Dados',
+                        descricao: 'Aprenda os principais BDs relacionais do mercado'
+                    }
+                }
             },
             methods: {
-                teste : () => {
+                teste: () => {
                     return "teste";
                 },
 
                 imprimirTexto(a) {
-                    this.name = a.key;
+                    console.log(a);
+                },
+
+                clicar() {
+                    alert("teste");
+                },
+
+                trocarNome() {
+                    this.name = testeInput.value
                     console.log(this.name);
                 },
 
-                clicar(){
-                    alert("teste");
-                },
             }
         })
 
     </script>
 </body>
+
 </html>
