@@ -19,7 +19,7 @@
         <a v-bind:href="link">link</a><br>
         <h1 v-if="name == 'Davi'" v-on:click="clicar()" :class="cor[0] = 'verde' ? cor[0] : cor[1]">{{cor[0] == 'verde'
             ? cor[0] : cor[1]}}</h1>
-        <input @blur="trocarNome()" @keyup="imprimirTexto($event)" type="text" name="teste" id="testeInput">
+            <input @blur="trocarNome()" @keyup="imprimirTexto($event)" type="text" name="teste" id="testeInput">
         <hr>
         <ul>
             <li v-for="(curso, chave) in cursos" v-text="chave +' - '+ curso"></li>
@@ -42,6 +42,15 @@
                 </tr>
             </tbody>
         </table>
+        
+        <br><br>
+        <input id="novaDescricao" placeholder="Digite uma nova descrição" type="text">
+        <br><br>
+        <select name="selectDescricao" id="selectDescricao">
+            <option v-for="({descricao},chave) in cursos2" :value="chave">{{descricao}}</option>
+        </select>
+        <br><br>
+        <button @click="trocarDescricao()">Adicionar nova descrição</button>
     </div>
 
     <script>
@@ -82,6 +91,10 @@
                     this.name = testeInput.value
                     console.log(this.name);
                 },
+
+                trocarDescricao(){
+                    this.cursos2[selectDescricao.value].descricao = novaDescricao.value
+                }
 
             }
         })
